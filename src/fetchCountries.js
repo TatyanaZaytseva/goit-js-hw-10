@@ -1,19 +1,14 @@
-const BASE_URL = 'https://restcountries.com';
-const endpoint = `/v3.1/name/${name}`;
-const queryParams = `?fields=${'name'},${'capital'},${'flags'},${'population'},${'languages'}`;
-const url = BASE_URL + endpoint + queryParams;
+const BASE_URL = 'https://restcountries.com/v3.1/name';
+const queryParams = `/${name}?fields=${'name'},${'capital'},${'flags'},${'population'},${'languages'}`;
+const url = BASE_URL + queryParams;
 
 function fetchCountryByName(name) {
-  return fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        return Promise.reject(new Error());
-      }
-      return response.json();
-    })
-    .then(data => {
-      return data[0];
-    });
+  return fetch(url).then(response => {
+    if (!response.ok) {
+      return Promise.reject(new Error());
+    }
+    return response.json();
+  });
 }
 
 export default { fetchCountryByName };

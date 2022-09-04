@@ -1,4 +1,4 @@
-export function countryMarkup(country) {
+export function markupCountry(country) {
   return `<div class="country">
     <div class="country-flag">
       <img src="${country.flags.svg}" alt="${country.name.official}">
