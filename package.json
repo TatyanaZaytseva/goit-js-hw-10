@@ -1,0 +1,37 @@
+{
+  "name": "goit-js-hw-10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/*.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/*.html --public-url /goit-js-hw-10/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TatyanaZaytseva/goit-js-hw-10.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TatyanaZaytseva/goit-js-hw-10/issues"
+  },
+  "homepage": "https://github.com/TatyanaZaytseva/goit-js-hw-10",
+  "dependencies": {
+    "@vimeo/player": "^2.17.1",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
+    "modern-normalize": "^1.1.0",
+    "notiflix": "^3.2.5",
+    "simplelightbox": "^2.10.3"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.0",
+    "parcel": "^2.6.0",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "posthtml-include": "^1.7.4"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}
