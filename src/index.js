@@ -2,7 +2,7 @@ import './css/styles.css';
 import Notiflix from 'notiflix';
 import _debounce, { debounce } from 'lodash.debounce';
 import API from './fetchCountries.js';
-import { markupCountry } from './markupCountryInfo.js';
+import { markupCountryInfo } from './markupCountryInfo.js';
 import { markupCountriesList } from './markupCountriesList.js';
 
 const DEBOUNCE_DELAY = 300;
@@ -23,38 +23,30 @@ function onSearchCountry(event) {
 
   const input = event.target;
   const searchQuery = input.value.trim();
-
+  if (!searchQuery) {
+    refs.countryList.innerHTML = '';
+    refs.countryInfo.innerHTML = '';
+    return;
+  }
   API.fetchCountryByName(searchQuery)
-    .then(renderCountryCard)
+    .then(renderCountriesCard)
     .catch(error => {
-      refs.countryList.innerHTML = '';
-      refs.countryInfo.innerHTML = '';
       onFetchError(error);
     });
 }
 
-function onFetchError(error) {
+function onFetchError() {
   Notiflix.Notify.failure('Oops, there is no country with that name');
 }
 
-function renderCountryInfo(country) {
-  const markup = markupCountry(country);
-  refs.countryInfo.innerHTML = markup;
-}
-
-function renderCountriesList(country) {
-  const markupList = markupCountriesList(country);
-  refs.countryList.innerHTML = markupList;
-}
-
-function renderCountryCard(countries) {
+function renderCountriesCard(countries) {
   if (countries.length === 1) {
     refs.countryList.innerHTML = '';
-    const countryCard = renderCountryInfo(countries);
+    const countryCard = markupCountryInfo(countries[0]);
     refs.countryInfo.innerHTML = countryCard;
   } else if (countries.length <= 10) {
     refs.countryInfo.innerHTML = '';
-    const markupList = renderCountriesList(countries);
+    const markupList = markupCountriesList(countries);
     refs.countryList.innerHTML = markupList;
   } else
     Notiflix.Notify.failure(
